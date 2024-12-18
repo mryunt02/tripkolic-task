@@ -34,7 +34,7 @@ export interface Price {
   adultPrice: number;
   childPrice: number;
   infantPrice: number;
-  addOns: any[];
+  addOns: { name: string; price: number }[];
   additionalPrices: {
     adultPrice: number;
     childPrice: number;
