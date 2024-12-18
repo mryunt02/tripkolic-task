@@ -1,8 +1,10 @@
+'use client';
+
 import { FilterSection } from '../ui/FilterSection';
 import { FilterTag } from '../ui/FilterTag';
 import { RangeSlider } from '../ui/RangeSlider';
 import { SearchInput } from '../ui/SearchInput';
-import { useFilters } from '@/app/hooks/useFilters';
+import { useFilters } from '@/app/contexts/FilterContext';
 
 interface FilterMenuProps {
   isOpen: boolean;
