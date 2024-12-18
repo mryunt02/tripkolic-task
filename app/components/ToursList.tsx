@@ -3,10 +3,12 @@
 import { useTours } from '../hooks/useTours';
 import TourCard from './TourCard';
 import { useFilters } from '../contexts/FilterContext';
+import { useMenu } from '../contexts/MenuContext';
 
 export default function ToursList() {
   const { tours, loading, error } = useTours();
   const { filters } = useFilters();
+  const { setIsMenuOpen } = useMenu();
 
   const filteredTours = tours.filter((tour) => {
     const route = tour.routes[0];
@@ -99,8 +101,45 @@ export default function ToursList() {
 
   if (filteredTours.length === 0) {
     return (
-      <div className='text-center text-gray-500 mt-8'>
-        No tours found matching your filters
+      <div className='flex flex-col items-center justify-center py-16 px-4'>
+        <svg
+          className='w-12 h-12 text-primary-500 mb-4'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
+        >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={2}
+            d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+          />
+        </svg>
+        <h3 className='text-xl font-semibold text-primary-500 mb-2'>
+          No tours found
+        </h3>
+        <p className='text-primary-400 text-center max-w-md'>
+          Try adjusting your filters or search criteria to find more tours
+        </p>
+        <button
+          className='mt-6 px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors duration-200 flex items-center gap-2'
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <svg
+            className='w-4 h-4'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4'
+            />
+          </svg>
+          Change Filter Settings
+        </button>
       </div>
     );
   }

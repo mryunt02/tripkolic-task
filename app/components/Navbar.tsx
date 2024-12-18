@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FilterMenu } from './FilterMenu/FilterMenu';
 import logo from '@/images/image.png';
+import { useMenu } from '../contexts/MenuContext';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isMenuOpen, setIsMenuOpen } = useMenu();
 
   return (
     <>
