@@ -19,6 +19,7 @@ export function useTours(): UseToursReturn {
         const response = await fetchTours();
         setTours(response.products);
       } catch (err) {
+        console.error(err);
         setError('Failed to load tours');
       } finally {
         setLoading(false);
